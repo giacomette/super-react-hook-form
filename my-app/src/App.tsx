@@ -2,11 +2,10 @@ import { useForm } from "react-hook-form";
 
 import Form from "./@form";
 
-import { Container } from "react-bootstrap";
-
 import "./App.css";
 
 import DadosCliente from "./components/DadosCliente";
+import DadosReceita from "./components/DadosReceita";
 
 function App() {
   const methods = useForm();
@@ -16,9 +15,16 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Forms</h1>
-      <Form primaryColor={"#008094"} onSubmit={onSubmit} methods={methods}>
+      <Form
+        generateButtons={{
+          okTitle: "Imprimir",
+        }}
+        primaryColor={"#008094"}
+        onSubmit={onSubmit}
+        methods={methods}
+      >
         <DadosCliente control={control} />
+        <DadosReceita control={control} />
       </Form>
     </div>
   );

@@ -1,40 +1,58 @@
-import { useEffect } from "react";
-import { createContext, useState } from "react";
-import { FormProvider, UseFormReturn } from "react-hook-form";
+import {
+  FormProvider as FormHookProvider,
+  UseFormReturn,
+} from "react-hook-form";
+import FormButtons from "../FormButtons";
+import FormLoading from "../FormLoading";
+import FormStateProvider from "./context";
+import { FormContainer } from "./styles";
 
 interface FormProps {
   methods: UseFormReturn;
   children: any;
   onSubmit: (ev: any) => void;
+  isLoading?: boolean;
   primaryColor?: string;
+  generateButtons?: {
+    okTitle?: string;
+    cancelTitle?: string;
+    onOk?: string;
+    onCancel?: string;
+  };
 }
 
-export const FormContext = createContext({
-  primaryColor: null,
-});
-
-function FormStateProvider({ children, values }: any) {
-  const [options, setOptions] = useState<any>({});
-
-  useEffect(() => {
-    setOptions(values);
-  }, [values]);
-
-  return (
-    <FormContext.Provider value={options}>{children}</FormContext.Provider>
-  );
-}
-
-function Form({ children, onSubmit, primaryColor, methods }: FormProps) {
+function Form({
+  children,
+  onSubmit,
+  generateButtons,
+  primaryColor,
+  methods,
+  isLoading,
+}: FormProps) {
   return (
     <FormStateProvider
       values={{
         primaryColor,
       }}
     >
-      <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>{children}</form>
-      </FormProvider>
+      <FormHookProvider {...methods}>
+        <FormContainer>
+          {isLoading ? <FormLoading /> : null}
+
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            {children}
+
+            {generateButtons ? (
+              <FormButtons
+                onOk={generateButtons.onOk}
+                onCancel={generateButtons.onCancel}
+                okTitle={generateButtons.okTitle ?? "Salvar"}
+                cancelTitle={generateButtons.cancelTitle}
+              />
+            ) : null}
+          </form>
+        </FormContainer>
+      </FormHookProvider>
     </FormStateProvider>
   );
 }

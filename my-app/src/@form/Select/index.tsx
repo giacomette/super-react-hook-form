@@ -1,13 +1,16 @@
 import ReactSelect, { Props } from "react-select";
 import { Colors } from "../utils/colors";
+interface SelectProps extends Props {
+  invalid?: boolean;
+}
 
-function Select({ options, ...props }: Props) {
+function Select({ options, invalid, ...props }: SelectProps) {
   return (
     <ReactSelect
       placeholder=""
       styles={{
         control: () => ({
-          border: `1px solid ${Colors.BorderColor}`,
+          border: `1px solid ${invalid ? Colors.Error : Colors.BorderColor}`,
           borderRadius: 6,
           flexDirection: "row",
           display: "flex",

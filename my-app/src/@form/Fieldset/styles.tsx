@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Colors } from "../utils/colors";
 
 export const FieldsetContainer = styled.div`
+  margin-bottom: 16px;
   padding: 24px;
   border: 1px solid #d5d7e0;
   border-radius: 6px;

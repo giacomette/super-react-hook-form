@@ -48,7 +48,11 @@ function Field({
 
       <FieldContainerController>
         {AsComponent ? (
-          <AsComponent {...(inputProps as any)} {...customProps} />
+          <AsComponent
+            invalid={invalid}
+            {...(inputProps as any)}
+            {...customProps}
+          />
         ) : (
           <Input invalid={invalid} {...(inputProps as any)} {...customProps} />
         )}

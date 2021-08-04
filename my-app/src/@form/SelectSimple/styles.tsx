@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { Colors } from "../utils/colors";
-import arrowDownSvg from './arrow-down.svg';
+import arrowDownSvg from "./arrow-down.svg";
 
-export const SelectContainer = styled.div`
+export const SelectContainer = styled.div<any>`
   select {
-    border: 1px solid ${Colors.BorderColor};
+    border: 1px solid
+      ${(props) => (props.invalid ? Colors.Error : Colors.BorderColor)};
     font-size: 16px;
     border-radius: 6px;
     width: 100%;
