@@ -9,13 +9,13 @@ import {
   FieldContainerController,
 } from "./styles";
 
-interface FieldProps<T = any>
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+interface FieldProps {
   label?: string;
   name: string;
   control?: any;
-  customProps?: T;
+  customProps?: any;
   defaultValue?: any;
+  customError?: string;
   as?: any;
 }
 
@@ -26,8 +26,9 @@ function Field({
   control,
   defaultValue,
   customProps,
+  customError,
   ...props
-}: FieldProps) {
+}: FieldProps & any) {
   const rules = extractRules({ label, name, ...props });
 
   const {
@@ -42,23 +43,35 @@ function Field({
 
   const AsComponent = as;
 
+  const isInvalid = !!customError || invalid;
+
   return (
     <FieldContainer>
-      {label ? <FieldLabel>{label}</FieldLabel> : null}
+      {label ? (
+        <FieldLabel testID={`label-field-${name}`}>{label}</FieldLabel>
+      ) : null}
 
       <FieldContainerController>
         {AsComponent ? (
           <AsComponent
-            invalid={invalid}
+            invalid={isInvalid}
             {...(inputProps as any)}
             {...customProps}
           />
         ) : (
-          <Input invalid={invalid} {...(inputProps as any)} {...customProps} />
+          <Input
+            invalid={isInvalid}
+            {...(inputProps as any)}
+            {...customProps}
+          />
         )}
       </FieldContainerController>
 
-      {invalid ? <FieldLabelError>{error?.message}</FieldLabelError> : null}
+      {isInvalid ? (
+        <FieldLabelError testID={`label-field-${name}-error`}>
+          {customError || error?.message}
+        </FieldLabelError>
+      ) : null}
     </FieldContainer>
   );
 }

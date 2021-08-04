@@ -3,7 +3,7 @@ import { getRuleObject } from ".";
 export function minLength(
   validation: string,
   label: string,
-  minLengthMessage: string
+  minLengthMessage?: string
 ) {
   const message =
     minLengthMessage ??

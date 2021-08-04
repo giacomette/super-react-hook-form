@@ -1,9 +1,12 @@
 import InputMaskComponent, { Props } from "react-input-mask";
 import { InputMaskContainer } from "./styles";
+interface InputMaskProps extends Props {
+  invalid?: boolean;
+}
 
-function InputMask(props: Props) {
+function InputMask({invalid, ...props}: InputMaskProps) {
   return (
-    <InputMaskContainer>
+    <InputMaskContainer invalid={invalid}>
       <InputMaskComponent {...props} />
     </InputMaskContainer>
   );

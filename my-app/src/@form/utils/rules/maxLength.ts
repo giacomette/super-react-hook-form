@@ -3,7 +3,7 @@ import { getRuleObject } from ".";
 export function maxLength(
   validation: string,
   label: string,
-  maxLengthMessage: string
+  maxLengthMessage?: string
 ) {
   const message =
     maxLengthMessage ??

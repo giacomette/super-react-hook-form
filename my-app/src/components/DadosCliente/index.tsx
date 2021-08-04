@@ -4,7 +4,15 @@ import Field from "../../@form/Field";
 import { Box, Divider } from "@chakra-ui/react";
 import { Row, Col } from "react-flexbox-grid";
 
-function DadosCliente({ control }: any) {
+const validadeBim = (cod: string, codConfirm: string) => {
+  if (cod && cod !== codConfirm) {
+    return "Informe o bim corretamente";
+  }
+
+  return null;
+};
+
+function DadosCliente({ control, watch }: any) {
   return (
     <Fieldset
       title="Dados do cliente"
@@ -17,6 +25,29 @@ function DadosCliente({ control }: any) {
           label="Nome do comprador"
           name="nome"
         />
+      </Box>
+
+      <Box>
+        <Row>
+          <Col md={4}>
+            <Field
+              required
+              control={control}
+              label="Código Carteirinha"
+              name="cod"
+            />
+          </Col>
+
+          <Col md={4}>
+            <Field
+              required
+              customError={validadeBim(watch("cod"), watch("codConfirm"))}
+              control={control}
+              label="Confirme Código Carteirinha"
+              name="cod2"
+            />
+          </Col>
+        </Row>
       </Box>
       <Box>
         <Row>
@@ -88,7 +119,7 @@ function DadosCliente({ control }: any) {
 
           <Col md={2} sm={4}>
             <Field
-              required
+              required="Porfavor, informe a data corretamente"
               control={control}
               customProps={{
                 type: "date",
@@ -104,7 +135,7 @@ function DadosCliente({ control }: any) {
 
       <Box mt="24px">
         <Row>
-          <Col md={1} sm={4}>
+          <Col md={2} sm={4}>
             <Field
               as={InputMask}
               required
@@ -117,7 +148,7 @@ function DadosCliente({ control }: any) {
               }}
             />
           </Col>
-          <Col md={3} sm={9}>
+          <Col md={2} sm={9}>
             <Field
               required
               control={control}
@@ -126,7 +157,15 @@ function DadosCliente({ control }: any) {
             />
           </Col>
           <Col md={1} sm={3}>
-            <Field required control={control} label="Número" name="numero" />
+            <Field
+              min={{
+                value: 10,
+                message: "Posha, informe um negocio maior que 10",
+              }}
+              control={control}
+              label="Número"
+              name="numero"
+            />
           </Col>
           <Col md={2} sm={6}>
             <Field

@@ -3,12 +3,13 @@ import { InputContainer } from "./styles";
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   invalid?: boolean;
+  testID?: string;
 }
 
-function Input({ invalid, ...rest }: InputProps) {
+function Input({ invalid, testID, ...rest }: InputProps) {
   return (
     <InputContainer invalid={!!invalid}>
-      <input {...rest} />
+      <input data-testid={testID} {...rest} />
     </InputContainer>
   );
 }

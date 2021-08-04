@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { Colors } from "../utils/colors";
 
-export const InputMaskContainer = styled.div<{
-  invalid?: boolean;
-}>`
+export const InputMaskContainer = styled.div<any>`
   input {
     width: 100%;
     padding: 0 12px;
