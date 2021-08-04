@@ -1,8 +1,8 @@
 import { getRuleObject } from "./index";
 
-export function required(validation: any, label: string) {
+export function required(validation: any, label?: string) {
   const message =
-    typeof validation === "string"
+    typeof validation === "string" && validation !== "true"
       ? validation
       : `O ${label ?? "campo"} deve ser preenchido!`;
 

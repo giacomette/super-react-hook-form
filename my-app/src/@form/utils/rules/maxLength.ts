@@ -2,12 +2,12 @@ import { getRuleObject } from ".";
 
 export function maxLength(
   validation: string,
-  label: string,
+  label?: string,
   maxLengthMessage?: string
 ) {
   const message =
     maxLengthMessage ??
-    `O limite de máximo de tamanho para ${
+    `O limite máximo de tamanho para ${
       label ?? "este campo"
     } é ${validation}.`;
 
