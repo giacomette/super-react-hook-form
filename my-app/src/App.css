@@ -4,5 +4,11 @@
 }
 
 body {
-  font-family: Poppins, sans-serif;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.App {
+  max-width: 1300px;
+  width: 100%;
+  margin: auto;
 }

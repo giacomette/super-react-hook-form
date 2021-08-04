@@ -1,13 +1,32 @@
 import ReactSelect, { Props } from "react-select";
+import { Colors } from "../utils/colors";
 
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
-
-function Select(props: Props) {
-  return <ReactSelect options={options} {...props} />;
+function Select({ options, ...props }: Props) {
+  return (
+    <ReactSelect
+      placeholder=""
+      styles={{
+        control: () => ({
+          border: `1px solid ${Colors.BorderColor}`,
+          borderRadius: 6,
+          flexDirection: "row",
+          display: "flex",
+        }),
+        input: () => ({
+          height: 36,
+          fontSize: 14,
+        }),
+        placeholder: () => ({
+          fontSize: 14,
+        }),
+        indicatorSeparator: () => ({
+          display: "none",
+        }),
+      }}
+      {...props}
+      options={options ?? []}
+    />
+  );
 }
 
 export default Select;

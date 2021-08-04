@@ -10,4 +10,3 @@ export function required(validation: any, label: string) {
     ? validation
     : getRuleObject(!!validation, message);
 }
- 

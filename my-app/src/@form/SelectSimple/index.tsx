@@ -1,12 +1,22 @@
-function SelectSimple({ options, ...rest }: any) {
+import { SelectContainer } from "./styles";
+import { SelectOption } from "../types";
+
+interface SelectSimpleProps
+  extends React.InputHTMLAttributes<HTMLSelectElement> {
+  options: SelectOption[];
+}
+
+function SelectSimple({ options, ...props }: SelectSimpleProps) {
   return (
-    <select {...rest}>
-      {options.map((value: any) => (
-        <option key={value} value={value}>
-          {value}
-        </option>
-      ))}
-    </select>
+    <SelectContainer>
+      <select {...props}>
+        {options?.map((item) => (
+          <option key={item.value} value={item.value}>
+            {item.label}
+          </option>
+        ))}
+      </select>
+    </SelectContainer>
   );
 }
 

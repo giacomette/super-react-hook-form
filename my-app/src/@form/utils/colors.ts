@@ -3,4 +3,5 @@ export enum Colors {
   BorderColor = "#ADB1CC",
   BorderFocusColor = "#3A3E59",
   InputColor = "#4E5161",
+  LabelColor = "#6A6F8D",
 }

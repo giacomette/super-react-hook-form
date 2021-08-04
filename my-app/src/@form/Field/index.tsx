@@ -1,8 +1,7 @@
-import { useController, useFormState } from "react-hook-form";
+import { useController } from "react-hook-form";
 
 import Input from "../Input";
 import extractRules from "../utils/extract-rules";
-import IconError from "./IconError";
 import {
   FieldContainer,
   FieldLabel,
@@ -29,14 +28,11 @@ function Field({
   customProps,
   ...props
 }: FieldProps) {
-  const rules = extractRules(props);
-
-  const { errors } = useFormState();
+  const rules = extractRules({ label, name, ...props });
 
   const {
     field: { ref, ...inputProps },
-    fieldState: { invalid, isTouched, isDirty, error },
-    formState: { touchedFields, dirtyFields },
+    fieldState: { invalid, error },
   } = useController({
     name,
     control,
@@ -45,11 +41,6 @@ function Field({
   });
 
   const AsComponent = as;
-
-  console.log("error", error);
-  console.log("invalid", invalid);
-  console.log("isTouched", isTouched);
-  console.log("isDirty", isDirty);
 
   return (
     <FieldContainer>
@@ -61,8 +52,6 @@ function Field({
         ) : (
           <Input invalid={invalid} {...(inputProps as any)} {...customProps} />
         )}
-
-        {invalid ? <IconError /> : null}
       </FieldContainerController>
 
       {invalid ? <FieldLabelError>{error?.message}</FieldLabelError> : null}

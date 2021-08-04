@@ -1,24 +1,24 @@
 import { useForm } from "react-hook-form";
 
-import Form, { Select } from "./@form";
-import Field from "./@form/Field";
+import Form from "./@form";
+
+import { Container } from "react-bootstrap";
 
 import "./App.css";
 
+import DadosCliente from "./components/DadosCliente";
+
 function App() {
   const methods = useForm();
-  const { control, watch } = methods;
+  const { control } = methods;
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: any) => console.log("valores validos", data);
 
   return (
     <div className="App">
-      <h1>Forms - {watch("nome")}</h1>
-      <Form onSubmit={onSubmit} methods={methods}>
-        <Field required control={control} label="Nome" name="nome" />
-
-        {/* <Field required control={methods.control} as={Select} name="nome3" /> */}
-        <button>enviar</button>
+      <h1>Forms</h1>
+      <Form primaryColor={"#008094"} onSubmit={onSubmit} methods={methods}>
+        <DadosCliente control={control} />
       </Form>
     </div>
   );
