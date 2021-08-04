@@ -16,13 +16,18 @@ function Fieldset({ children, title, description }: FieldsetProps) {
   const { primaryColor } = useContext(FormContext);
 
   return (
-    <FieldsetContainer>
+    <FieldsetContainer testID={`fieldset-${title}`}>
       {title ? (
-        <FieldsetTitle color={primaryColor}>{title}</FieldsetTitle>
+        <FieldsetTitle testID={`fieldset-${title}-title`} color={primaryColor}>
+          {title}
+        </FieldsetTitle>
       ) : null}
 
       {description ? (
-        <FieldsetDescription color={primaryColor}>
+        <FieldsetDescription
+          testID={`fieldset-${title}-description`}
+          color={primaryColor}
+        >
           {description}
         </FieldsetDescription>
       ) : null}
