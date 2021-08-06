@@ -29,7 +29,7 @@ function App() {
         generateButtons={{
           okTitle: "Imprimir",
         }}
-        primaryColor={"#008094"}
+        primaryColor={"#BE293A"}
         onSubmit={onSubmit}
         methods={methods}
       >

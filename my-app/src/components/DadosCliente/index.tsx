@@ -3,8 +3,10 @@ import Field from "../../@form/Field";
 
 import { Box, Divider } from "@chakra-ui/react";
 import { Row, Col } from "react-flexbox-grid";
+import { useFormState } from "react-hook-form";
 
-const validadeBim = (cod: string, codConfirm: string) => {
+const validaBim = (cod: string, codConfirm: string) => {
+ 
   if (cod && cod !== codConfirm) {
     return "Informe o bim corretamente";
   }
@@ -12,7 +14,23 @@ const validadeBim = (cod: string, codConfirm: string) => {
   return null;
 };
 
+const formatError = (error: any) => {
+
+  let result = null;
+
+  const keys = Object.keys(error);
+
+  return result;
+}
+
 function DadosCliente({ control, watch }: any) {
+
+  const { errors } = useFormState({
+    control
+  });
+
+  console.log("errors",  errors)
+
   return (
     <Fieldset
       title="Dados do cliente"
@@ -41,7 +59,7 @@ function DadosCliente({ control, watch }: any) {
           <Col md={4}>
             <Field
               required
-              customError={validadeBim(watch("cod"), watch("codConfirm"))}
+              customError={validaBim(watch("cod"), watch("cod2"))}
               control={control}
               label="Confirme Código Carteirinha"
               name="cod2"

@@ -16,6 +16,7 @@ interface FieldProps {
   customProps?: any;
   defaultValue?: any;
   customError?: string;
+  disabledShowError?: boolean;
   as?: any;
 }
 
@@ -27,6 +28,7 @@ function Field({
   defaultValue,
   customProps,
   customError,
+  disabledShowError,
   ...props
 }: FieldProps & any) {
   const rules = extractRules({ label, name, ...props });
@@ -67,7 +69,7 @@ function Field({
         )}
       </FieldContainerController>
 
-      {isInvalid ? (
+      {isInvalid && !disabledShowError ? (
         <FieldLabelError testID={`label-field-${name}-error`}>
           {customError || error?.message}
         </FieldLabelError>

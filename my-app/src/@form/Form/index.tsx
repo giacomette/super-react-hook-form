@@ -16,8 +16,8 @@ interface FormProps {
   generateButtons?: {
     okTitle?: string;
     cancelTitle?: string;
-    onOk?: string;
-    onCancel?: string;
+    onOk?: any;
+    onCancel?: any;
   };
 }
 
