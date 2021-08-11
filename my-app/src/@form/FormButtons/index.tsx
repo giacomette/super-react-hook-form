@@ -1,6 +1,6 @@
 import { useContext } from "react";
+import ButtonPrimary from "../ButtonPrimary";
 import { FormContext } from "../Form/context";
-import FormButton from "./FormButton";
 import { FormButtonContainer } from "./styles";
 
 interface FormButtonsProps {
@@ -23,21 +23,21 @@ function FormButtons({
   return (
     <FormButtonContainer>
       {cancelTitle ? (
-        <FormButton
-          type="outlined"
+        <ButtonPrimary
+          variant="outlined"
           disabled={disabled}
           onClick={onCancel}
-          color={primaryColor}
+          color={primaryColor as string}
           title={cancelTitle}
         />
       ) : null}
 
       {okTitle ? (
-        <FormButton
-          type="contained"
+        <ButtonPrimary
+          variant="contained"
           disabled={disabled}
           onClick={onOk}
-          color={primaryColor}
+          color={primaryColor as string}
           title={okTitle}
         />
       ) : null}

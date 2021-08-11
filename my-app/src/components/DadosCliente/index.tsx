@@ -4,6 +4,7 @@ import Field from "../../@form/Field";
 import { Box, Divider } from "@chakra-ui/react";
 import { Row, Col } from "react-flexbox-grid";
 import { useFormState } from "react-hook-form";
+import ButtonPrimary from "../../@form/ButtonPrimary";
 
 const validaBim = (cod: string, codConfirm: string) => {
  
@@ -24,12 +25,6 @@ const formatError = (error: any) => {
 }
 
 function DadosCliente({ control, watch }: any) {
-
-  const { errors } = useFormState({
-    control
-  });
-
-  console.log("errors",  errors)
 
   return (
     <Fieldset
@@ -166,6 +161,12 @@ function DadosCliente({ control, watch }: any) {
               }}
             />
           </Col>
+          <Col md={1} sm={9}>
+            <Box pt={"16rem 16em"}>
+              <ButtonPrimary title="Buscar" color={"red"} />
+            </Box>
+          </Col>
+
           <Col md={2} sm={9}>
             <Field
               required

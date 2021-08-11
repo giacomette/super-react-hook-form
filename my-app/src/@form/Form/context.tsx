@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { createContext, useState } from "react";
 
-export const FormContext = createContext({
+export const FormContext = createContext<{
+  primaryColor: string | null
+}>({
   primaryColor: null,
 });
 

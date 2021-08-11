@@ -7,6 +7,7 @@ export const FieldsetContainer = styled.div<any>`
   border: 1px solid #d5d7e0;
   border-radius: 6px;
   background-color: #fff;
+  position: relative;
 `;
 
 export const FieldsetTitle = styled.div<any>`
